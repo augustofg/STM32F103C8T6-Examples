@@ -1,7 +1,7 @@
 PRJ_NAME   = Template
 CC         = arm-none-eabi-gcc
-SRC        = src/main.c src/system_stm32f1xx.c
-ASRC       = src/startup_stm32f103xb.s
+SRC        = $(wildcard src/*.c)
+ASRC       = $(wildcard src/*.s)
 OBJ        = $(SRC:.c=.o) $(ASRC:.s=.o)
 OBJCOPY    = arm-none-eabi-objcopy
 OBJDUMP    = arm-none-eabi-objdump
