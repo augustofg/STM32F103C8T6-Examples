@@ -1,20 +1,18 @@
 PRJ_NAME   = Template
 CC         = arm-none-eabi-gcc
-SRC        = src/main.c src/system_stm32f4xx.c
-ASRC       = src/startup_stm32f407xx.s
+SRC        = src/main.c src/system_stm32f1xx.c
+ASRC       = src/startup_stm32f103xb.s
 OBJ        = $(SRC:.c=.o) $(ASRC:.s=.o)
 OBJCOPY    = arm-none-eabi-objcopy
 OBJDUMP    = arm-none-eabi-objdump
 PROGRAMMER = st-flash
-DEVICE     = STM32F407xx
+DEVICE     = STM32F103xB
 OPTIMIZE   = -O2
-LDSCRIPT   = stm32f407.ld
-CFLAGS     = -g -Wall $(OPTIMIZE) -mcpu=cortex-m4 -mlittle-endian -mfloat-abi=hard -mfpu=fpv4-sp-d16  -mthumb -I inc/ -D $(DEVICE)
+LDSCRIPT   = stm32f103c8tx.ld
+CFLAGS     = -g -Wall $(OPTIMIZE) -mcpu=cortex-m3 -mlittle-endian -mthumb -I inc/ -D $(DEVICE)
 ASFLAGS    =  $(CFLAGS)
-#-Wall -mcpu=cortex-m4 -mlittle-endian -mthumb -I inc/ -D $(DEVICE)
 LDFLAGS    = -T $(LDSCRIPT) -Wl,--gc-sections
 
-#-Wall,-mcpu=cortex-m4,-mlittle-endian,-mthumb,-T$(LDSCRIPT),-mfloat-abi=hard
 
 all: $(PRJ_NAME).elf
 
