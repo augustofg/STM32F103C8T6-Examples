@@ -5,7 +5,8 @@ ASRC       = $(wildcard src/*.s)
 OBJ        = $(SRC:.c=.o) $(ASRC:.s=.o)
 OBJCOPY    = arm-none-eabi-objcopy
 OBJDUMP    = arm-none-eabi-objdump
-PROGRAMMER = st-flash
+PROGRAMMER = openocd
+PGFLAGS    = -f /usr/share/openocd/scripts/interface/stlink-v2.cfg -f /usr/share/openocd/scripts/target/stm32f1x.cfg -c "program $(PRJ_NAME).elf verify reset" -c shutdown
 DEVICE     = STM32F103xB
 OPTIMIZE   = -O2
 LDSCRIPT   = stm32f103c8tx.ld
@@ -18,8 +19,6 @@ all: $(PRJ_NAME).elf
 
 $(PRJ_NAME).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
-	$(OBJCOPY) -O ihex $(PRJ_NAME).elf $(PRJ_NAME).hex
-	$(OBJCOPY) -O binary $(PRJ_NAME).elf $(PRJ_NAME).bin
 	arm-none-eabi-size $(PRJ_NAME).elf
 .c.o:
 	$(CC) -c $(CFLAGS) $< -o $@
@@ -28,10 +27,15 @@ $(PRJ_NAME).elf: $(OBJ)
 	$(CC) -c $(ASFLAGS) $< -o $@
 
 clean:
-	rm -f $(OBJ) *.map *.elf *.hex
+	rm -f $(OBJ) $(PRJ_NAME).elf $(PRJ_NAME).hex $(PRJ_NAME).bin
 
 burn:
-	st-flash write $(PRJ_NAME).bin 0x08000000
-rst:
+	$(PROGRAMMER) $(PGFLAGS)
 
 fast: all burn
+
+hex: all
+	$(OBJCOPY) -O ihex $(PRJ_NAME).elf $(PRJ_NAME).hex
+
+bin: all
+	$(OBJCOPY) -O binary $(PRJ_NAME).elf $(PRJ_NAME).bin
