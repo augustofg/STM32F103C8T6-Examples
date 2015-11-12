@@ -1,0 +1,32 @@
+This is a simple template for the STM32F103C8T6 microcontroller.
+All files obtained from ST and ARM are licensed under the BSD
+3-Clause License. The LICENSE file is empty, you can use your
+preferred license.
+
+Dependencies:
+
+arm-none-eabi-gcc
+arm-none-eabi-gdb
+arm-none-eabi-newlib
+openocd (>= 0.8.0)
+make
+
+How to use this template:
+
+Compile:
+	make
+
+Upload: (using ST-Link V2)
+	make burn
+
+Compile and upload:
+	make fast
+
+Clean output files:
+	make clean
+
+Generate .bin file:
+	make bin
+
+Generate .hex file:
+	make hex
