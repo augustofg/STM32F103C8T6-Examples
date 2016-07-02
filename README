@@ -1,7 +1,4 @@
-This is a simple template for the STM32F103C8T6 microcontroller.
-All files obtained from ST and ARM are licensed under the BSD
-3-Clause License. The LICENSE file is empty, you can use your
-preferred license.
+This repository contains source code examples for the ARM Cortex-M3 STM32F103C8T6 microcontroller.
 
 Dependencies:
 
@@ -11,7 +8,7 @@ arm-none-eabi-newlib
 openocd (>= 0.8.0)
 make
 
-How to use this template:
+How to compile and upload the examples:
 
 Compile:
 	make

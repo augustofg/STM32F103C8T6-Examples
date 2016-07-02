@@ -1,4 +1,4 @@
-PRJ_NAME   = Template
+PRJ_NAME   = Blink
 CC         = arm-none-eabi-gcc
 SRC        = $(wildcard src/*.c)
 ASRC       = $(wildcard src/*.s)
@@ -8,9 +8,9 @@ OBJDUMP    = arm-none-eabi-objdump
 PROGRAMMER = openocd
 PGFLAGS    = -f interface/stlink-v2.cfg -f target/stm32f1x.cfg -c "program $(PRJ_NAME).elf verify reset" -c shutdown
 DEVICE     = STM32F103xB
-OPTIMIZE   = -O2
+OPTIMIZE   = -Og
 LDSCRIPT   = stm32f103c8tx.ld
-CFLAGS     = -g -Wall $(OPTIMIZE) -mcpu=cortex-m3 -mlittle-endian -mthumb -I inc/ -D $(DEVICE)
+CFLAGS     = -g3 -Wall $(OPTIMIZE) -mcpu=cortex-m3 -mlittle-endian -mthumb -I inc/ -D $(DEVICE)
 ASFLAGS    =  $(CFLAGS)
 LDFLAGS    = -T $(LDSCRIPT) -Wl,--gc-sections
 
