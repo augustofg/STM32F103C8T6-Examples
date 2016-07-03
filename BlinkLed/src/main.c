@@ -86,9 +86,9 @@ int main()
 	 */
 	while(1)
 	{
-		GPIOA->BSRR = GPIO_BSRR_BS1; //PA1 = 1 (Led ON)
+		GPIOA->BSRR = GPIO_BSRR_BS1; //PA1 = 1 (Led OFF)
 		delay_us(500000); //500ms delay
-		GPIOA->BSRR = GPIO_BSRR_BR1; //PA1 = 0 (Led OFF)
+		GPIOA->BSRR = GPIO_BSRR_BR1; //PA1 = 0 (Led ON)
 		delay_us(500000); //500ms delay
 	}
 }
