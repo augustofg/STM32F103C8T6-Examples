@@ -33,23 +33,24 @@
 /*
  * Delay function:
  * Uses the SysTick timer to wait for
- * an abritary time in microseconds.
+ * an arbitrary time in microseconds.
  *
  * The clock source is assumed to be
- * the internal 8MHz RC oscilator
+ * the internal 8MHz RC oscillator
  */
 void delay_us(unsigned int time)
 {
 	/*
-	 * Clear current value and the count flag
-	 */
-	SysTick->VAL = 0;
-
-	/*
-	 * Multiply the delay time by 8 (source is
-	 * 8MHz and the time is specified in us)
+	 * Multiply the delay time by 8 (the clock 
+	 * source is 8MHz and the time is specified
+	 * in microseconds)
 	 */
 	SysTick->LOAD = (time << 3);
+
+	/*
+	 * Clears the current value and the count flag
+	 */
+	SysTick->VAL = 0;
 	
 	/*
 	 * Waits until the count ends
