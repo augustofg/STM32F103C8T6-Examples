@@ -37,15 +37,15 @@
  *
  * The clock source is assumed to be
  * the internal 8MHz RC oscillator
+ * divided by 8 (1MHz)
  */
 void delay_us(unsigned int time)
 {
 	/*
-	 * Multiply the delay time by 8 (the clock 
-	 * source is 8MHz and the time is specified
-	 * in microseconds)
+	 * Load the delay period in microseconds
+	 * assuming a 1MHz source
 	 */
-	SysTick->LOAD = (time << 3);
+	SysTick->LOAD = time;
 
 	/*
 	 * Clears the current value and the count flag
@@ -72,9 +72,10 @@ int main()
 	AFIO->MAPR = AFIO_MAPR_SWJ_CFG_JTAGDISABLE;
 
 	/*
-	 * Enable the SysTick Timer
+	 * Enable the SysTick Timer with
+	 * the CPU clock divided by 8
 	 */
-	SysTick->CTRL = SysTick_CTRL_CLKSOURCE | SysTick_CTRL_ENABLE;
+	SysTick->CTRL = SysTick_CTRL_ENABLE;
 
 	/*
 	 * Enable the PA1 as a digital output
