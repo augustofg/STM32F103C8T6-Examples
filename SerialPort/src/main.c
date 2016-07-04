@@ -31,18 +31,27 @@
  */
 #include "stm32f103xb.h"
 
+/*
+ * Read a character though the serial port
+ */
 char Getc_USART1()
 {
 	while(!(USART1->SR & USART_SR_RXNE));
 	return USART1->DR;
 }
 
+/*
+ * Write a character though the serial port
+ */
 void Putc_USART1(char CharSend)
 {
 	while(!(USART1->SR & USART_SR_TXE));
 	USART1->DR = CharSend;
 }
 
+/*
+ * Write a string though the serial port
+ */
 void Puts_USART1(const char * StringSend)
 {
 	uint32_t StrCount = 0;
