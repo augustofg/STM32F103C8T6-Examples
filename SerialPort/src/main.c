@@ -32,7 +32,7 @@
 #include "stm32f103xb.h"
 
 /*
- * Read a character though the serial port
+ * Read a character through the serial port
  */
 char Getc_USART1()
 {
@@ -41,7 +41,7 @@ char Getc_USART1()
 }
 
 /*
- * Write a character though the serial port
+ * Write a character through the serial port
  */
 void Putc_USART1(char CharSend)
 {
@@ -50,7 +50,7 @@ void Putc_USART1(char CharSend)
 }
 
 /*
- * Write a string though the serial port
+ * Write a string through the serial port
  */
 void Puts_USART1(const char * StringSend)
 {
