@@ -33,11 +33,11 @@
  */
 void LcdSendNibble(char data)
 {
+	LcdPutNibble(data);
 	LCD_SET_E();
 	delay_us(20);
-	LcdPutNibble(data);
-	delay_us(20);
 	LCD_RST_E();
+	delay_us(20);
 }
 
 /*
