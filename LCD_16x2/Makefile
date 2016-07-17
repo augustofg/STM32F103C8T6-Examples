@@ -12,7 +12,7 @@ OPTIMIZE   = -Og
 LDSCRIPT   = stm32f103c8tx.ld
 CFLAGS     = -g3 -Wall $(OPTIMIZE) -mcpu=cortex-m3 -mlittle-endian -mthumb -I inc/ -D $(DEVICE)
 ASFLAGS    =  $(CFLAGS)
-LDFLAGS    = -T $(LDSCRIPT) -Wl,--gc-sections
+LDFLAGS    = -T $(LDSCRIPT) -Wl,--gc-sections --specs=nano.specs --specs=nosys.specs
 
 
 all: $(PRJ_NAME).elf
