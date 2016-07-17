@@ -89,7 +89,7 @@ void delay_us(unsigned int time)
 	/*
 	 * Waits until the count ends
 	 */
-	while(!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG));
+	while(!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk));
 }
 
 /*
@@ -112,7 +112,7 @@ uint16_t ADC_Read(unsigned int channel)
 	 * Waits until the conversion has
 	 * finished
 	 */
-	while((ADC1->SR & ADC_SR_EOC) == 0);
+	while((ADC1->SR & ADC_SR_EOS) == 0);
 
 	/*
 	 * Returns the acquired value

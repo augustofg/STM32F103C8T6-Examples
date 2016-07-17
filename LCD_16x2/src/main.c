@@ -55,7 +55,7 @@ void delay_us(unsigned int time)
 	/*
 	 * Waits until the count ends
 	 */
-	while(!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG));
+	while(!(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk));
 }
 
 int main()
@@ -74,7 +74,7 @@ int main()
 	/*
 	 * Enable the SysTick Timer
 	 */
-	SysTick->CTRL = SysTick_CTRL_ENABLE;
+	SysTick->CTRL = SysTick_CTRL_ENABLE_Msk;
 
 	/*
 	 * 100ms delay to ensure that the
