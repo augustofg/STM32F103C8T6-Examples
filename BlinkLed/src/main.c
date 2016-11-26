@@ -81,6 +81,7 @@ int main()
 	 * Enable the PA1 as a digital output
 	 */
 	GPIOA->CRL = 0x00000020;
+	GPIOC->CRH = 0x00200000;
 
 	/*
 	 * Infinite loop
@@ -88,8 +89,10 @@ int main()
 	while(1)
 	{
 		GPIOA->BSRR = GPIO_BSRR_BS1; //PA1 = 1 (Led OFF)
+		GPIOC->BSRR = GPIO_BSRR_BS13; //PC13 = 1 (Led OFF)
 		delay_us(500000); //500ms delay
 		GPIOA->BSRR = GPIO_BSRR_BR1; //PA1 = 0 (Led ON)
+		GPIOC->BSRR = GPIO_BSRR_BR13; //PA13 = 0 (Led ON)
 		delay_us(500000); //500ms delay
 	}
 }
