@@ -6,3 +6,4 @@
 *~
 *.d
 \#*\#
+openocd.log

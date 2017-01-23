@@ -1,5 +1,2 @@
 #!/usr/bin/env bash
-setsid openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg </dev/null &>/dev/null 2>&1 &
-sleep 0.1
 arm-none-eabi-gdb -tui *.elf -x gdbcmd
-pkill -SIGTERM openocd

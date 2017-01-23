@@ -7,7 +7,7 @@ OBJ        = $(SRC:.c=.o) $(ASRC:.s=.o)
 OBJCOPY    = arm-none-eabi-objcopy
 OBJDUMP    = arm-none-eabi-objdump
 PROGRAMMER = openocd
-PGFLAGS    = -f interface/stlink-v2.cfg -f target/stm32f1x.cfg -c "program $(PRJ_NAME).elf verify reset" -c shutdown
+PGFLAGS    = -f openocd.cfg -c "program $(PRJ_NAME).elf verify reset" -c shutdown
 DEVICE     = STM32F103xB
 DBG_OPT	   = -Og
 REL_OPT    = -O3
