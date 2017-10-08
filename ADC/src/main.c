@@ -101,8 +101,9 @@ uint16_t ADC_Read(unsigned int channel)
 	/*
 	 * Selects the ADC channel
 	 */
-	ADC1->CR1 = (ADC1->CR1 & 0xFFFFFFE0) | (0x1F & channel);
-
+	ADC1->SQR1 = (1 << ADC_SQR1_L_Pos);
+	ADC1->SQR3 = (channel & ADC_SQR3_SQ1_Msk);
+	
 	/*
 	 * Starts the conversion
 	 */
