@@ -53,3 +53,15 @@ $ make bin
 $ make hex
 ```
 
+# Debugging:
+You can debug with gdb you can invoke the ```debug``` script (tui mode) or invoke gdb directly:
+```
+$ arm-none-eabi-gdb *.elf -x gdbcmd
+```
+
+If you have [PyCortexMDebug](https://github.com/bnahill/PyCortexMDebug) installed you can invoke gdb with python:
+```
+$ arm-none-eabi-gdb *.elf -x pygdbcmd
+```
+
+This will allow inspecting microcontroller's registers and bit fields much more convenient.
