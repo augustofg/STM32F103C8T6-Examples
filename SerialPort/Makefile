@@ -9,19 +9,15 @@ OBJDUMP    = arm-none-eabi-objdump
 PROGRAMMER = openocd
 PGFLAGS    = -f openocd.cfg -c "program $(PRJ_NAME).elf verify reset" -c shutdown
 DEVICE     = STM32F103xB
-DBG_OPT	   = -Og
-REL_OPT    = -O3
+OPT       ?= -Og
 LDSCRIPT   = stm32f103c8tx.ld
-CFLAGS     = -g3 -Wall -mcpu=cortex-m3 -mlittle-endian -mthumb -I inc/ -D $(DEVICE)
+CFLAGS     = -g3 -Wall -mcpu=cortex-m3 -mlittle-endian -mthumb -I inc/ -D $(DEVICE) $(OPT)
 ASFLAGS    =  $(CFLAGS)
 LDFLAGS    = -T $(LDSCRIPT) -Wl,--gc-sections --specs=nano.specs --specs=nosys.specs
 
-.PHONY: all rel clean burn hex bin fast fastrel
-all: CFLAGS+=$(DBG_OPT)
-all: $(PRJ_NAME).elf
+.PHONY: all clean flash burn hex bin
 
-rel: CFLAGS+=$(REL_OPT)
-rel: $(PRJ_NAME).elf
+all: $(PRJ_NAME).elf
 
 $(PRJ_NAME).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
@@ -38,15 +34,14 @@ $(PRJ_NAME).elf: $(OBJ)
 clean:
 	rm -f $(OBJ) $(PRJ_NAME).elf $(PRJ_NAME).hex $(PRJ_NAME).bin $(SRCDIR)/*.d
 
-burn:
+flash: $(PRJ_NAME).elf
 	$(PROGRAMMER) $(PGFLAGS)
 
-hex:
+burn: $(PRJ_NAME).elf
+	$(PROGRAMMER) $(PGFLAGS)
+
+hex: $(PRJ_NAME).elf
 	$(OBJCOPY) -O ihex $(PRJ_NAME).elf $(PRJ_NAME).hex
 
-bin:
+bin: $(PRJ_NAME).elf
 	$(OBJCOPY) -O binary $(PRJ_NAME).elf $(PRJ_NAME).bin
-
-fast: all burn
-
-fastrel: rel burn

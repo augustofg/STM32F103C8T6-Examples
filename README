@@ -14,10 +14,7 @@ Compile:
 	make
 
 Upload: (using ST-Link V2)
-	make burn
-
-Compile and upload:
-	make fast
+	make flash
 
 Clean output files:
 	make clean
@@ -27,3 +24,7 @@ Generate .bin file:
 
 Generate .hex file:
 	make hex
+
+You can change the default optimization level (-Og) through the OPT flag:
+	make clean
+	make OPT=-O3
