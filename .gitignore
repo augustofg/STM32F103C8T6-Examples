@@ -149,3 +149,4 @@ $RECYCLE.BIN/
 *.elf
 *.d
 openocd.log
+.interface

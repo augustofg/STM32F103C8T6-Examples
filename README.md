@@ -21,7 +21,19 @@ $ make clean
 $ make OPT=-O3
 ```
 
-## Upload: (using ST-Link V2)
+## Upload / Flash:
+Before uploading/flashing/debugging for the first time select the debug adapter:
+```
+$ ./dbgcfg
+Please chose the debug interface:
+[0] ST-LINK/V2
+[1] ST-LINK/V2-1
+[2] JLINK
+Choice:
+```
+After that, your choice will be stored on a local ".interface" file. You can change it at any time by invoking the ```dbgcfg``` script again.
+
+To flash the microcontroller:
 ```
 $ make flash
 ```

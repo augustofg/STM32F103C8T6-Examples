@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+function DebugInterface()
+{
+	echo "Please chose the debug interface:"
+	echo -e "[0] ST-LINK/V2\n[1] ST-LINK/V2-1\n[2] JLINK"
+	read -p "Choice: " debug
+	
+	if [[ "$debug" == 0 ]]; then
+		interface="stlink-v2"
+	elif [[ "$debug" == 1 ]]; then
+		interface="stlink-v2-1"
+	elif [[ "$debug" == 2 ]]; then
+		interface="jlink"
+	else
+		echo "Option $debug not valid."
+		exit 1
+	fi
+
+	echo "set interface \"$interface\"" > .interface
+}
+
+function main()
+{
+	DebugInterface
+}
+
+main
