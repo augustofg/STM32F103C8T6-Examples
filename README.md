@@ -64,4 +64,4 @@ If you have [PyCortexMDebug](https://github.com/bnahill/PyCortexMDebug) installe
 $ arm-none-eabi-gdb *.elf -x pygdbcmd
 ```
 
-This will allow inspecting microcontroller's registers and bit fields much more convenient.
+This will make inspecting microcontroller's registers and bit fields much more convenient.
