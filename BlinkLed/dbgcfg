@@ -3,7 +3,7 @@
 function DebugInterface()
 {
 	echo "Please chose the debug interface:"
-	echo -e "[0] ST-LINK/V2\n[1] ST-LINK/V2-1\n[2] JLINK"
+	echo -e "[0] ST-LINK/V2\n[1] ST-LINK/V2-1\n[2] JLINK\n[3] CMSIS-DAP"
 	read -p "Choice: " debug
 	
 	if [[ "$debug" == 0 ]]; then
@@ -12,6 +12,8 @@ function DebugInterface()
 		interface="stlink-v2-1"
 	elif [[ "$debug" == 2 ]]; then
 		interface="jlink"
+	elif [[ "$debug" == 3 ]]; then
+		interface="cmsis-dap"
 	else
 		echo "Option $debug not valid."
 		exit 1
