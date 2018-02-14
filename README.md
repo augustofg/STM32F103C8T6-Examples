@@ -29,6 +29,7 @@ Please chose the debug interface:
 [0] ST-LINK/V2
 [1] ST-LINK/V2-1
 [2] JLINK
+[3] CMSIS-DAP
 Choice:
 ```
 After that, your choice will be stored on a local ".interface" file. You can change it at any time by invoking the ```dbgcfg``` script again.
